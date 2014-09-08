@@ -1,95 +1,55 @@
-<div class='fb-edit-section-header'>Question</div>
 
 <div class="fb-common-wrapper">
-	<div class="fb-label-description">
+    <div class='fb-edit-section-header'>Common question properties</div>
+    <div class="fb-label-description">
+        Variable
+        <input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.FIELD_CODE %>"  >
+    </div>
 
-		<textarea 	placeholder="Question text" data-rv-input="model.<%= Formbuilder.options.mappings.TEXT %>" ></textarea>
-	</div>
-	Type
-	<select required data-rv-input="model.<%= Formbuilder.options.mappings.TYPE %>">
-          <option >select type</option>
-          <option value="autocomplete" >autocomplete</option>
+    <div class='fb-edit-section-header'>General properties</div>
 
-          <option value="barcode" >barcode</option>
 
-          <option value="boolean" >boolean</option>
+    <div class='fb-common-checkboxes'>
+        <label>
+            <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.REQUIRED %>' />
+            Required
+        </label>
+    </div>
 
-          <option value="camera" >camera</option>
+      <div class='fb-common-checkboxes'>
+        <label>
+            <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.HIDDEN %>' >
+            Hidden
+        </label>
+    </div>
+    <div class="clearfix"></div>
+      <div class='fb-common-checkboxes'>
+        <label>
+            <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.CONSENSUS %>' >
+            Consensus
+        </label>
+    </div>
+    <div class="clearfix"></div>
+    <div class="fb-label-description">
 
-          <option value="checkbox" >checkbox</option>
+        <input type='text' data-rv-checked='model.<%= Formbuilder.options.mappings.DEFAULT %>' >
+        Default
+    </div>
+    <div class="clearfix"></div>
+        <div class="fb-label-description">
 
-          <option value="crop" >crop</option>
+            <input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.CONDITION %>"  >
+            Condition
+        </div>
+        <div class="clearfix"></div>
+        <input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.HELP %>"  >
+        Help
 
-          <option value="crop-tagger" >crop-tagger</option>
-
-          <option value="currency" >currency</option>
-
-          <option value="date" >date</option>
-
-          <option value="dropdown" >dropdown</option>
-
-          <option value="email" >email</option>
-
-          <option value="error" >error</option>
-
-          <option value="instruction" >instruction</option>
-
-          <option value="number" >number</option>
-
-          <option value="radio" >radio</option>
-
-          <option value="radio-range" >radio-range</option>
-
-          <option value="range" >range</option>
-
-          <option value="streetview" >streetview</option>
-
-          <option value="text" >text</option>
-
-          <option value="textarea" >textarea</option>
-
-          <option value="url" >url</option>
-
-        </select>
-	<br>
-	Variable
-	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.FIELD_CODE %>"  />
-</div>
-
-<div class='fb-edit-section-header'>General properties</div>
-<div class="fb-label-description">
-	<label>
-	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.REQUIRED %>' />
-	  Required
-	</label>
-	<br>
-	<label>
-	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.HIDDEN %>' />
-	  Hidden
-	</label>
-	<br>
-	<label>
-	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.CONSENSUS %>' />
-	  Consensus
-	</label>
-	<br>
-	<label>
-	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.DEFAULT %>' />
-	  Default
-	</label>
-	<br>
-	Condition
-	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.CONDITION %>"  />
-	<br>
-
-	Help
-	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.HELP %>"  />
-</div>
-
-<div class='fb-edit-section-header'>Text properties</div>
-<div class="fb-label-description">
-	PATTERN
-	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.PATTERN %>"  />
+    <div class='fb-edit-section-header'>Text properties</div>
+    <div class="fb-label-description">
+        Pattern
+        <input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.PATTERN %>"  >
+    </div>
 </div>
 
 

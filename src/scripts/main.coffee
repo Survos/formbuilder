@@ -361,6 +361,7 @@ class Formbuilder
       attrs[Formbuilder.options.mappings.LABEL] = 'Untitled'
       attrs[Formbuilder.options.mappings.FIELD_TYPE] = field_type
       attrs[Formbuilder.options.mappings.REQUIRED] = true
+      attrs[Formbuilder.options.mappings.INTEGER_ONLY] = true
       attrs['field_options'] = {}
       Formbuilder.fields[field_type].defaultAttributes?(attrs) || attrs
 
@@ -382,16 +383,16 @@ class Formbuilder
       REQUIRED:      'required'
       ADMIN_ONLY:    'admin_only'
       OPTIONS:       'field_options.options'
-      DESCRIPTION:   'field_options.description'
-      INCLUDE_OTHER: 'field_options.include_other_option'
-      INCLUDE_BLANK: 'field_options.include_blank_option'
-      INTEGER_ONLY:  'field_options.integer_only'
-      MIN:           'field_options.min'
-      MAX:           'field_options.max'
-      MINLENGTH:     'field_options.minlength'
-      MAXLENGTH:     'field_options.maxlength'
-      LENGTH_UNITS:  'field_options.min_max_length_units'
-      FIELD_CODE:    'field_options.field_code'
+      DESCRIPTION:   'description'
+      INCLUDE_OTHER: 'include_other_option'
+      INCLUDE_BLANK: 'include_blank_option'
+      INTEGER_ONLY:  'integer_only'
+      MIN:           'min'
+      MAX:           'max'
+      MINLENGTH:     'minlength'
+      MAXLENGTH:     'maxlength'
+      LENGTH_UNITS:  'min_max_length_units'
+      FIELD_CODE:    'field_code'
       TEXT:          'text'
       TYPE:          'type'
       HIDDEN:        'hidden'
