@@ -587,7 +587,16 @@
         MAX: 'field_options.max',
         MINLENGTH: 'field_options.minlength',
         MAXLENGTH: 'field_options.maxlength',
-        LENGTH_UNITS: 'field_options.min_max_length_units'
+        LENGTH_UNITS: 'field_options.min_max_length_units',
+        FIELD_CODE: 'field_options.field_code',
+        TEXT: 'survos_text',
+        TYPE: 'survos_type',
+        HIDDEN: 'survos_hidden',
+        DEFAULT: 'survos_default',
+        CONDITION: 'survos_condition',
+        CONSENSUS: 'survos_consensus',
+        HELP: 'survos_help',
+        PATTERN: 'survos_pattern'
       },
       dict: {
         ALL_CHANGES_SAVED: 'All changes saved',
@@ -787,6 +796,16 @@
     view: "<label class='section-name'><%= rf.get(Formbuilder.options.mappings.LABEL) %></label>\n<p><%= rf.get(Formbuilder.options.mappings.DESCRIPTION) %></p>",
     edit: "<div class='fb-edit-section-header'>Label</div>\n<input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.LABEL %>' />\n<textarea data-rv-input='model.<%= Formbuilder.options.mappings.DESCRIPTION %>'\n  placeholder='Add a longer description to this field'></textarea>",
     addButton: "<span class='symbol'><span class='fa fa-minus'></span></span> Section Break"
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('question', {
+    order: 30,
+    view: "<textarea><%= rf.get(Formbuilder.options.mappings.TEXT) %></textarea>",
+    edit: "<%= Formbuilder.templates['edit/survey']() %>",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-question\"></span></span> Question"
   });
 
 }).call(this);
@@ -994,6 +1013,36 @@ with (obj) {
 __p += '<div class=\'fb-edit-section-header\'>Size</div>\n<select data-rv-value="model.' +
 ((__t = ( Formbuilder.options.mappings.SIZE )) == null ? '' : __t) +
 '">\n  <option value="small">Small</option>\n  <option value="medium">Medium</option>\n  <option value="large">Large</option>\n</select>\n';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["edit/survey"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-edit-section-header\'>Question</div>\n\n<div class="fb-common-wrapper">\n\tQuestion\n\t<textarea data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.TEXT )) == null ? '' : __t) +
+'" ></textarea>\n\t<br>\n\n\ttype\n\t<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.TYPE )) == null ? '' : __t) +
+'"  />\n\t<br>\n\tVariable\n\t<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.FIELD_CODE )) == null ? '' : __t) +
+'"  />\n</div>\n\n<h2>General properties</h2>\n<div class="fb-label-description">\n\t<label>\n\t  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
+'\' />\n\t  Required\n\t</label>\n\t<br>\n\t<label>\n\t  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.HIDDEN )) == null ? '' : __t) +
+'\' />\n\t  HIDDEN\n\t</label>\n\t<br>\n\t<label>\n\t  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.CONSENSUS )) == null ? '' : __t) +
+'\' />\n\t  CONSENSUS\n\t</label>\n\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+((__t = ( Formbuilder.options.mappings.DEFAULT )) == null ? '' : __t) +
+'\' />\n  DEFAULT\n</label>\n<br>\nCONDITION\n<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.CONDITION )) == null ? '' : __t) +
+'"  />\n<br>\n\nHELP\n<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.HELP )) == null ? '' : __t) +
+'"  />\n</div>\n\n<h2>Text properties</h2>\n<fieldset>\n\tPATTERN\n\t<input type="text" data-rv-input="model.' +
+((__t = ( Formbuilder.options.mappings.PATTERN )) == null ? '' : __t) +
+'"  />\n</fieldset>\n\n\n\n\n\n\n\n\n\n\n';
 
 }
 return __p

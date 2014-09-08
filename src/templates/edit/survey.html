@@ -1,0 +1,59 @@
+<div class='fb-edit-section-header'>Question</div>
+
+<div class="fb-common-wrapper">
+	Question
+	<textarea data-rv-input="model.<%= Formbuilder.options.mappings.TEXT %>" ></textarea>
+	<br>
+
+	type
+	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.TYPE %>"  />
+	<br>
+	Variable
+	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.FIELD_CODE %>"  />
+</div>
+
+<h2>General properties</h2>
+<div class="fb-label-description">
+	<label>
+	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.REQUIRED %>' />
+	  Required
+	</label>
+	<br>
+	<label>
+	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.HIDDEN %>' />
+	  HIDDEN
+	</label>
+	<br>
+	<label>
+	  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.CONSENSUS %>' />
+	  CONSENSUS
+	</label>
+
+<label>
+  <input type='checkbox' data-rv-checked='model.<%= Formbuilder.options.mappings.DEFAULT %>' />
+  DEFAULT
+</label>
+<br>
+CONDITION
+<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.CONDITION %>"  />
+<br>
+
+HELP
+<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.HELP %>"  />
+</div>
+
+<h2>Text properties</h2>
+<fieldset>
+	PATTERN
+	<input type="text" data-rv-input="model.<%= Formbuilder.options.mappings.PATTERN %>"  />
+</fieldset>
+
+
+
+
+
+
+
+
+
+
