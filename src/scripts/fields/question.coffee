@@ -10,7 +10,7 @@ Formbuilder.registerField 'question',
   """
 
   edit: """
-    <%= Formbuilder.templates['edit/survey']() %>
+    <%= Formbuilder.templates['edit/question']() %>
   """
 
   addButton: """
