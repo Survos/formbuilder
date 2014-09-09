@@ -37,7 +37,7 @@ class ViewFieldView extends Backbone.View
     @$el.addClass('response-field-' + @model.get(Formbuilder.options.mappings.FIELD_TYPE))
         .data('cid', @model.cid)
         .html(Formbuilder.templates["view/base#{if !@model.is_input() then '_non_input' else ''}"]({rf: @model}))
-
+    if @model.get(Formbuilder.options.mappings.FIXED) then @$el.addClass('ui-state-disabled')
     return @
 
   focusEditView: ->
@@ -240,6 +240,7 @@ class BuilderView extends Backbone.View
   setSortable: ->
     @$responseFields.sortable('destroy') if @$responseFields.hasClass('ui-sortable')
     @$responseFields.sortable
+      items: '.fb-field-wrapper:not(.ui-state-disabled)'
       forcePlaceholderSize: true
       placeholder: 'sortable-placeholder'
       stop: (e, ui) =>
@@ -381,6 +382,7 @@ class Formbuilder
       LABEL:         'label'
       FIELD_TYPE:    'field_type'
       REQUIRED:      'required'
+      FIXED:         'fixed'
       ADMIN_ONLY:    'admin_only'
       OPTIONS:       'field_options.options'
       DESCRIPTION:   'description'

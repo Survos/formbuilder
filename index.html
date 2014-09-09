@@ -42,9 +42,7 @@
     $(function(){
       fb = new Formbuilder({
         selector: '.fb-main',
-        bootstrapData: [
-
-        ]
+        bootstrapData: [{"label":"Survey name","field_type":"survey","fixed":true,"required":true,"integer_only":true,"field_options":{"size":"small"},"cid":"c15","description":"survey description"},{"label":"Multiple choice","field_type":"checkboxes","required":true,"integer_only":true,"field_options":{"options":[{"label":"uhi uhi uh","checked":false},{"label":"uhiuh i  i i i i i","checked":false}]},"cid":"c2","hidden":false,"consensus":false},{"label":"Number","field_type":"number","required":true,"integer_only":true,"field_options":{},"cid":"c6"},{"label":"Select","field_type":"dropdown","required":true,"integer_only":true,"field_options":{"options":[{"label":"","checked":false},{"label":"","checked":false}],"include_blank_option":false},"cid":"c10"}]
       });
 
       fb.on('save', function(payload){

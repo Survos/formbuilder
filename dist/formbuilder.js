@@ -124,6 +124,9 @@
       this.$el.addClass('response-field-' + this.model.get(Formbuilder.options.mappings.FIELD_TYPE)).data('cid', this.model.cid).html(Formbuilder.templates["view/base" + (!this.model.is_input() ? '_non_input' : '')]({
         rf: this.model
       }));
+      if (this.model.get(Formbuilder.options.mappings.FIXED)) {
+        this.$el.addClass('ui-state-disabled');
+      }
       return this;
     };
 
@@ -383,6 +386,7 @@
         this.$responseFields.sortable('destroy');
       }
       this.$responseFields.sortable({
+        items: '.fb-field-wrapper:not(.ui-state-disabled)',
         forcePlaceholderSize: true,
         placeholder: 'sortable-placeholder',
         stop: function(e, ui) {
@@ -578,6 +582,7 @@
         LABEL: 'label',
         FIELD_TYPE: 'field_type',
         REQUIRED: 'required',
+        FIXED: 'fixed',
         ADMIN_ONLY: 'admin_only',
         OPTIONS: 'field_options.options',
         DESCRIPTION: 'description',
@@ -655,10 +660,32 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('checkboxes', {
+    order: 10,
+    view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>\n  <div>\n    <label class='fb-option'>\n      <input type='checkbox' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />\n      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>\n    </label>\n  </div>\n<% } %>\n\n<% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>\n  <div class='other-option'>\n    <label class='fb-option'>\n      <input type='checkbox' />\n      Other\n    </label>\n\n    <input type='text' />\n  </div>\n<% } %>",
+    edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>\n<%= Formbuilder.templates['edit/question']() %>",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-square-o\"></span></span> Checkboxes",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.options = [
+        {
+          label: "",
+          checked: false
+        }, {
+          label: "",
+          checked: false
+        }
+      ];
+      return attrs;
+    }
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('dropdown', {
     order: 24,
     view: "<select>\n  <% if (rf.get(Formbuilder.options.mappings.INCLUDE_BLANK)) { %>\n    <option value=''></option>\n  <% } %>\n\n  <% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>\n    <option <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'selected' %>>\n      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>\n    </option>\n  <% } %>\n</select>",
-    edit: "<%= Formbuilder.templates['edit/options']({ includeBlank: true }) %>",
+    edit: "<%= Formbuilder.templates['edit/question']() %>\n<%= Formbuilder.templates['edit/options']({ includeBlank: true }) %>",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-caret-down\"></span></span> Dropdown",
     defaultAttributes: function(attrs) {
       attrs.field_options.options = [
@@ -681,7 +708,7 @@
   Formbuilder.registerField('number', {
     order: 30,
     view: "<input type='text' />\n<% if (units = rf.get(Formbuilder.options.mappings.UNITS)) { %>\n  <%= units %>\n<% } %>",
-    edit: "<%= Formbuilder.templates['edit/min_max']() %>\n<%= Formbuilder.templates['edit/units']() %>\n<%= Formbuilder.templates['edit/integer_only']() %>",
+    edit: "<%= Formbuilder.templates['edit/min_max']() %>\n<%= Formbuilder.templates['edit/units']() %>\n<%= Formbuilder.templates['edit/integer_only']() %>\n<%= Formbuilder.templates['edit/question']() %>",
     addButton: "<span class=\"symbol\"><span class=\"fa fa-number\">123</span></span> Number"
   });
 
@@ -691,8 +718,8 @@
   Formbuilder.registerField('radio', {
     order: 15,
     view: "<% for (i in (rf.get(Formbuilder.options.mappings.OPTIONS) || [])) { %>\n  <div>\n    <label class='fb-option'>\n      <input type='radio' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick=\"javascript: return false;\" />\n      <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>\n    </label>\n  </div>\n<% } %>\n\n<% if (rf.get(Formbuilder.options.mappings.INCLUDE_OTHER)) { %>\n  <div class='other-option'>\n    <label class='fb-option'>\n      <input type='radio' />\n      Other\n    </label>\n\n    <input type='text' />\n  </div>\n<% } %>",
-    edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>",
-    addButton: "<span class=\"symbol\"><span class=\"fa fa-circle-o\"></span></span> Multiple Choice",
+    edit: "<%= Formbuilder.templates['edit/options']({ includeOther: true }) %>\n<%= Formbuilder.templates['edit/question']() %>",
+    addButton: "<span class=\"symbol\"><span class=\"fa fa-circle-o\"></span></span> Choice",
     defaultAttributes: function(attrs) {
       attrs.field_options.options = [
         {
@@ -710,10 +737,25 @@
 }).call(this);
 
 (function() {
+  Formbuilder.registerField('survey', {
+    order: 0,
+    view: "<input type='text'  />",
+    hidden: true,
+    edit: "<%= Formbuilder.templates['edit/survey']() %>",
+    addButton: "<span class='symbol hide'><span class='fa fa-font'></span></span> Survey",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.size = 'small';
+      return attrs;
+    }
+  });
+
+}).call(this);
+
+(function() {
   Formbuilder.registerField('text', {
     order: 0,
     view: "<input type='text' class='rf-size-<%= rf.get(Formbuilder.options.mappings.SIZE) %>' />",
-    edit: "<%= Formbuilder.templates['edit/size']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>",
+    edit: "<%= Formbuilder.templates['edit/min_max_length']() %>\n<%= Formbuilder.templates['edit/text']() %>\n<%= Formbuilder.templates['edit/question']() %>",
     addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Text",
     defaultAttributes: function(attrs) {
       attrs.field_options.size = 'small';
@@ -734,8 +776,6 @@ __p +=
 ((__t = ( Formbuilder.templates['edit/common']() )) == null ? '' : __t) +
 '\n' +
 ((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].edit({rf: rf}) )) == null ? '' : __t) +
-'\n' +
-((__t = ( Formbuilder.templates['edit/question']() )) == null ? '' : __t) +
 '\n';
 
 }
@@ -913,6 +953,30 @@ __p += '<div class=\'fb-edit-section-header\'>Size</div>\n<select data-rv-value=
 return __p
 };
 
+this["Formbuilder"]["templates"]["edit/survey"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class=\'fb-edit-section-header\' data-rv-value="model.' +
+((__t = ( Formbuilder.options.mappings.SIZE )) == null ? '' : __t) +
+'" >Format</div>\n<select name="format" id="format-view6" class="form-control user-success">\n            <option>html</option>\n            <option>text</option>\n            <option>markdown</option>\n          </select>\n';
+
+}
+return __p
+};
+
+this["Formbuilder"]["templates"]["edit/text"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<hr>\n<div class="fb-common-wrapper">\n\n<div class="fb-label-description">\n    <label>Question text</label>\n\t<textarea class="form-control" data-rv-input=\'model.' +
+((__t = ( Formbuilder.options.mappings.TEXT )) == null ? '' : __t) +
+'\'></textarea>\n</div></div>';
+
+}
+return __p
+};
+
 this["Formbuilder"]["templates"]["edit/units"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -948,13 +1012,17 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<div class=\'fb-tab-pane active\' id=\'addField\'>\n  <div class=\'fb-add-field-types\'>\n    <div class=\'section\'>\n      ';
  _.each(_.sortBy(Formbuilder.inputFields, 'order'), function(f){ ;
+__p += '\n        ';
+ if (!f.hidden) { ;
 __p += '\n        <a data-field-type="' +
 ((__t = ( f.field_type )) == null ? '' : __t) +
 '" class="' +
 ((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
 '">\n          ' +
 ((__t = ( f.addButton )) == null ? '' : __t) +
-'\n        </a>\n      ';
+'\n        </a>\n        ';
+ } ;
+__p += '\n      ';
  }); ;
 __p += '\n    </div>\n\n    <!--div class=\'section\'>\n      ';
  _.each(_.sortBy(Formbuilder.nonInputFields, 'order'), function(f){ ;

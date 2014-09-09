@@ -13,6 +13,7 @@ Formbuilder.registerField 'number',
     <%= Formbuilder.templates['edit/min_max']() %>
     <%= Formbuilder.templates['edit/units']() %>
     <%= Formbuilder.templates['edit/integer_only']() %>
+    <%= Formbuilder.templates['edit/question']() %>
   """
 
   addButton: """
