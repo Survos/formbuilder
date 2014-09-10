@@ -1,9 +1,19 @@
-<div class='subtemplate-wrapper'>
-  <div class='cover'></div>
-  <%= Formbuilder.templates['view/label']({rf: rf}) %>
+<% if (rf.get(Formbuilder.options.mappings.FIXED)) { %>
+    <%= Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) %>
+<% } else { %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+          <%= Formbuilder.templates['view/label']({rf: rf}) %>
+      </div>
+      <div class="panel-body">
+        <div class='subtemplate-wrapper'>
+          <div class='cover'></div>
+          <%= Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) %>
 
-  <%= Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) %>
+          <%= Formbuilder.templates['view/description']({rf: rf}) %>
+          <%= Formbuilder.templates['view/duplicate_remove']({rf: rf}) %>
+        </div>
+      </div>
+    </div>
 
-  <%= Formbuilder.templates['view/description']({rf: rf}) %>
-  <%= Formbuilder.templates['view/duplicate_remove']({rf: rf}) %>
-</div>
+<% } %>

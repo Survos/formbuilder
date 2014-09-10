@@ -1,3 +1,7 @@
-<span class='help-block'>
-  <%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.DESCRIPTION)) %>
-</span>
+<hr>
+<p class="alert alert-success"><small><%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.SMSTEXT)) %></small></p>
+<% if (rf.get(Formbuilder.options.mappings.DESCRIPTION)) { %>
+	<span class='help-block'>
+	  <%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.DESCRIPTION)) %>
+	</span>
+<% } %>

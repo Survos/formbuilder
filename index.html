@@ -42,7 +42,472 @@
     $(function(){
       fb = new Formbuilder({
         selector: '.fb-main',
-        bootstrapData: [{"label":"Survey name","field_type":"survey","fixed":true,"required":true,"integer_only":true,"field_options":{"size":"small"},"cid":"c15","description":"survey description"},{"label":"Multiple choice","field_type":"checkboxes","required":true,"integer_only":true,"field_options":{"options":[{"label":"uhi uhi uh","checked":false},{"label":"uhiuh i  i i i i i","checked":false}]},"cid":"c2","hidden":false,"consensus":false},{"label":"Number","field_type":"number","required":true,"integer_only":true,"field_options":{},"cid":"c6"},{"label":"Select","field_type":"dropdown","required":true,"integer_only":true,"field_options":{"options":[{"label":"","checked":false},{"label":"","checked":false}],"include_blank_option":false},"cid":"c10"}]
+        bootstrapData: {
+    "title": "Receipt Survey",
+    "projectId": 9,
+    "overview": "overview test",
+    "code": "receipt_survey",
+    "isScored": false,
+    "hasHelpImages": false,
+    "sharingLevel": "private",
+    "formTabs": null,
+    "hasReplacement": false,
+    "toolCode": null,
+    "repeatMax": 1,
+    "needsData": false,
+    "jobCategory": null,
+    "questions": [
+        {
+            "code": "store_name",
+            "type": "text",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "What is the name of the store that you last visited?",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "order_idx": 1,
+            "smsText": "What is the name of the store that you last visited?"
+        },
+        {
+            "code": "purchase",
+            "type": "boolean",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "Did you make a purchase at this store?",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "order_idx": 2,
+            "smsText": "Did you make a purchase at this store? (Y\/N)"
+        },
+        {
+            "code": "receipt_photo",
+            "type": "camera",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "Please take 1-2 photos of your receipt.",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "max": 2,
+            "filename": "{{username}}-{{questionCode}}-{{timestamp}}.jpg",
+            "buttonText": "Take Photo(s)",
+            "cameraApi": false,
+            "quality": 0,
+            "source": "camera",
+            "targetWidth": 0,
+            "targetHeight": 0,
+            "png": false,
+            "frontCamera": false,
+            "order_idx": 3,
+            "smsText": " Please take 1-2 photos of your receipt."
+        },
+        {
+            "code": "store_time",
+            "type": "radio",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "Is the amount that you spent at this store today:",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "order_idx": 4,
+            "smsText": "Is the amount that you spent at this store today: (1=*More* than I would normally spend,2=*About* what I would normally spend,3=*Less* than I would normally spend)",
+            "choices": [
+                {
+                    "value": "More",
+                    "text": "*More* than I would normally spend",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "Same",
+                    "text": "*About* what I would normally spend",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "Less",
+                    "text": "*Less* than I would normally spend",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "purchase_who",
+            "type": "radio",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "At this store, did you...?",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "order_idx": 5,
+            "smsText": "At this store, did you...? (1=Buy items for yourself only,2=Buy items to share just with 1 other person,3=Buy items to share with 2 to 5 people,4=Buy items to share with more than 5 people)",
+            "choices": [
+                {
+                    "value": "yourself",
+                    "text": "Buy items for yourself only",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "one_person",
+                    "text": "Buy items to share just with 1 other person",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "two_five_people",
+                    "text": "Buy items to share with 2 to 5 people",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "5_more_people",
+                    "text": "Buy items to share with more than 5 people",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "products_purchase",
+            "type": "instruction",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "Of the following product types, which ones were \u201cunplanned\u201d purchases (i.e. you did not intend to buy these items when you went into the store)?   (Check all that apply)",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "order_idx": 6,
+            "smsText": "Of the following product types, which ones were \u201cunplanned\u201d purchases (i.e. you did not intend to buy these items when you went into the store)?   (Check all that apply)"
+        },
+        {
+            "code": "alcohol_products_purchase",
+            "type": "checkbox",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "**ALCOHOL**",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "noneLabel": "",
+            "order_idx": 7,
+            "smsText": "**ALCOHOL** (1=Beer,2=Hard Liquor,3=Alcopops (includes single serve sweet alcohol drinks like Bud Light's Limerita and wine coolers),4=Wine)",
+            "choices": [
+                {
+                    "value": "beer",
+                    "text": "Beer",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "liqour",
+                    "text": "Hard Liquor",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "alcopops",
+                    "text": "Alcopops (includes single serve sweet alcohol drinks like Bud Light's Limerita and wine coolers)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "wine",
+                    "text": "Wine",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "tobacco_products_purchase",
+            "type": "checkbox",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "**TOBACCO**",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "noneLabel": "",
+            "order_idx": 8,
+            "smsText": "**TOBACCO** (1=Cigarettes (menthol and regular),2=E-cigarettes (includes refills),3=Little Cigars or Cigarillos,4=Large cigars,5=Chew)",
+            "choices": [
+                {
+                    "value": "cig",
+                    "text": "Cigarettes (menthol and regular)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "e_cig",
+                    "text": "E-cigarettes (includes refills)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "little_cigars",
+                    "text": "Little Cigars or Cigarillos",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "large_cigars",
+                    "text": "Large cigars",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "chew",
+                    "text": "Chew",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "food_products_purchase",
+            "type": "checkbox",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "**FOOD**",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "noneLabel": "",
+            "order_idx": 9,
+            "smsText": "**FOOD** (1=Fruits and Vegetables (includes fresh, frozen, canned),2=Meat,3=Grains (includes pasta, bread, cereal),4=Candy (includes gum),5=Baked Goods (includes cookies, muffins, pastries),6=Salty Snacks (includes chips, popcorn, nuts),7=Dairy Products (includes yogurt, cheese, ice cream),8=Prepared Food (includes po-boys, hot and cold plates, fries, etc.))",
+            "choices": [
+                {
+                    "value": "fruits_veg",
+                    "text": "Fruits and Vegetables (includes fresh, frozen, canned)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "meat",
+                    "text": "Meat",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "grains",
+                    "text": "Grains (includes pasta, bread, cereal)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "candy",
+                    "text": "Candy (includes gum)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "baked_goods",
+                    "text": "Baked Goods (includes cookies, muffins, pastries)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "salty_snack",
+                    "text": "Salty Snacks (includes chips, popcorn, nuts)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "dairy",
+                    "text": "Dairy Products (includes yogurt, cheese, ice cream)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "prepared_food",
+                    "text": "Prepared Food (includes po-boys, hot and cold plates, fries, etc.)",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "beverages_products_purchase",
+            "type": "checkbox",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "**BEVERAGES**",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "",
+            "noneLabel": "",
+            "order_idx": 10,
+            "smsText": "**BEVERAGES** (1=Milk,2=Water (plain, no sweeteners added),3=Flavored Water,4=Sports Drinks (includes Gatorade, Powerade),5=Diet Soda,6=Regular Soda (non-diet),7=100% Juice,8=Energy Drinks (excludes coffee or coffee blended drinks like Frappucino),9=Coffee,10=Icee\/Slush Puppie)",
+            "choices": [
+                {
+                    "value": "milk",
+                    "text": "Milk",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "water",
+                    "text": "Water (plain, no sweeteners added)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "flavored_water",
+                    "text": "Flavored Water",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "sports_drink",
+                    "text": "Sports Drinks (includes Gatorade, Powerade)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "diet_soda",
+                    "text": "Diet Soda",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "soda",
+                    "text": "Regular Soda (non-diet)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "juice",
+                    "text": "100% Juice",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "energy_drinks",
+                    "text": "Energy Drinks (excludes coffee or coffee blended drinks like Frappucino)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "coffee",
+                    "text": "Coffee",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "icee",
+                    "text": "Icee\/Slush Puppie",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        },
+        {
+            "code": "other_purchase",
+            "type": "checkbox",
+            "shortDisplay": null,
+            "answerCount": null,
+            "isConsensus": false,
+            "text": "**OTHER**",
+            "required": false,
+            "hidden": false,
+            "default": "",
+            "condition": "",
+            "consensus": false,
+            "help": "",
+            "choicesUrl": "",
+            "otherLabel": "Other (please describe)",
+            "noneLabel": "",
+            "order_idx": 11,
+            "smsText": "**OTHER** (1=Toiletries,2=Cleaning Products (includes cleaners, soap, sponges, garbage bags),3=Paper Products (includes toilet paper, tissues, paper towels),4=Medicine)",
+            "choices": [
+                {
+                    "value": "toiletries",
+                    "text": "Toiletries",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "cleaning_product",
+                    "text": "Cleaning Products (includes cleaners, soap, sponges, garbage bags)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "paper_products",
+                    "text": "Paper Products (includes toilet paper, tissues, paper towels)",
+                    "code": "",
+                    "url": ""
+                },
+                {
+                    "value": "medicine",
+                    "text": "Medicine",
+                    "code": "",
+                    "url": ""
+                }
+            ]
+        }
+    ],
+    "replacements": {},
+    "id": 3
+}
       });
 
       fb.on('save', function(payload){

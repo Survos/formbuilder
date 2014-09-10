@@ -1,4 +1,4 @@
-Formbuilder.registerField 'checkboxes',
+Formbuilder.registerField 'checkbox',
 
   order: 10
 
@@ -7,7 +7,7 @@ Formbuilder.registerField 'checkboxes',
       <div>
         <label class='fb-option'>
           <input type='checkbox' <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].checked && 'checked' %> onclick="javascript: return false;" />
-          <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].label %>
+          <%= rf.get(Formbuilder.options.mappings.OPTIONS)[i].text %>
         </label>
       </div>
     <% } %>
@@ -22,23 +22,24 @@ Formbuilder.registerField 'checkboxes',
         <input type='text' />
       </div>
     <% } %>
-  """
+"""
 
   edit: """
+    <%= Formbuilder.templates['edit/text']() %>
     <%= Formbuilder.templates['edit/options']({ includeOther: true }) %>
     <%= Formbuilder.templates['edit/question']() %>
   """
 
   addButton: """
-    <span class="symbol"><span class="fa fa-square-o"></span></span> Checkboxes
+    <span class="symbol"><span class="fa fa-square-o"></span></span> Checkbox
   """
 
   defaultAttributes: (attrs) ->
-    attrs.field_options.options = [
-      label: "",
+    attrs.choices = [
+      text: "option 1",
       checked: false
     ,
-      label: "",
+      text: "",
       checked: false
     ]
 

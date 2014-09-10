@@ -3,7 +3,7 @@ Formbuilder.registerField 'survey',
   order: 0
 
   view: """
-    <input type='text'  />
+    <%= Formbuilder.templates['view/survey']({rf: rf}) %>
   """
 
   hidden: true
@@ -13,7 +13,7 @@ Formbuilder.registerField 'survey',
   """
 
   addButton: """
-    <span class='symbol hide'><span class='fa fa-font'></span></span> Survey
+    <span class='symbol hide'></span>
   """
 
   defaultAttributes: (attrs) ->

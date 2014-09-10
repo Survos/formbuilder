@@ -1,6 +1,13 @@
-<label>
-  <span><%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.LABEL)) %>
-  <% if (rf.get(Formbuilder.options.mappings.REQUIRED)) { %>
-    <abbr title='required'>*</abbr>
-  <% } %>
-</label>
+<span><%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.TEXT)) %></span>
+  <span class="label label-warning">
+  <%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.FIELD_CODE)) %>
+	  <% if (rf.get(Formbuilder.options.mappings.REQUIRED)) { %>
+	    <i title='required' class="fa fa-asterisk"></i>
+	  <% } %>
+	  <% if (rf.get(Formbuilder.options.mappings.HIDDEN)) { %>
+	    <i title='hidden' class="fa fa-eye-slash"></i>
+	  <% } %>
+	  <% if (rf.get(Formbuilder.options.mappings.CONSENSUS)) { %>
+	    <i title='consensus' class="fa fa-check-square"></i>
+	  <% } %>
+  </span>

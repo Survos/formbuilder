@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+  <h3><%= rf.get(Formbuilder.options.mappings.TITLE) %> <span class="label label-warning"><%= rf.get(Formbuilder.options.mappings.FORMAT) %></span></h3>
+  </div>
+  <div class="panel-body">
+    <div class='subtemplate-wrapper'>
+      <div class='cover'></div>
+        <h5>Instructions</h5>
+        <span class='help-block'>
+            <%= Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.OVERVIEW)) %>
+        </span>
+    </div>
+  </div>
+</div>

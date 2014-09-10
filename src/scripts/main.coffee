@@ -37,7 +37,7 @@ class ViewFieldView extends Backbone.View
     @$el.addClass('response-field-' + @model.get(Formbuilder.options.mappings.FIELD_TYPE))
         .data('cid', @model.cid)
         .html(Formbuilder.templates["view/base#{if !@model.is_input() then '_non_input' else ''}"]({rf: @model}))
-    if @model.get(Formbuilder.options.mappings.FIXED) then @$el.addClass('ui-state-disabled')
+    if @model.get(Formbuilder.options.mappings.FIXED) then @$el.addClass('ui-state-fixed')
     return @
 
   focusEditView: ->
@@ -140,7 +140,13 @@ class BuilderView extends Backbone.View
 
   initialize: (options) ->
     {selector, @formBuilder, @bootstrapData} = options
-
+    survey = _.clone(@bootstrapData)
+    # take survey data separately and push it into the collection as first item
+    survey.questions = null
+    survey.type = 'survey'
+    survey.fixed = true
+    questions = [survey].concat @bootstrapData.questions
+    console.log questions
     # This is a terrible idea because it's not scoped to this view.
     if selector?
       @setElement $(selector)
@@ -154,7 +160,7 @@ class BuilderView extends Backbone.View
     @collection.bind 'destroy', @ensureEditViewScrolled, @
 
     @render()
-    @collection.reset(@bootstrapData)
+    @collection.reset(questions)
     @bindSaveEvent()
 
   bindSaveEvent: ->
@@ -240,7 +246,7 @@ class BuilderView extends Backbone.View
   setSortable: ->
     @$responseFields.sortable('destroy') if @$responseFields.hasClass('ui-sortable')
     @$responseFields.sortable
-      items: '.fb-field-wrapper:not(.ui-state-disabled)'
+      items: '.fb-field-wrapper:not(.ui-state-fixed)'
       forcePlaceholderSize: true
       placeholder: 'sortable-placeholder'
       stop: (e, ui) =>
@@ -333,7 +339,12 @@ class BuilderView extends Backbone.View
     @formSaved = true
     @saveFormButton.attr('disabled', true).text(Formbuilder.options.dict.ALL_CHANGES_SAVED)
     @collection.sort()
-    payload = JSON.stringify fields: @collection.toJSON()
+
+    survey = @collection.first()
+    @collection.remove survey
+    data = survey.attributes
+    data.questions = @collection.toJSON()
+    payload = JSON.stringify data
 
     if Formbuilder.options.HTTP_ENDPOINT then @doAjaxSave(payload)
     @formBuilder.trigger 'save', payload
@@ -380,11 +391,12 @@ class Formbuilder
       SIZE:          'field_options.size'
       UNITS:         'field_options.units'
       LABEL:         'label'
-      FIELD_TYPE:    'field_type'
+      TITLE:         'title'
+      FIELD_TYPE:    'type'
       REQUIRED:      'required'
       FIXED:         'fixed'
       ADMIN_ONLY:    'admin_only'
-      OPTIONS:       'field_options.options'
+      OPTIONS:       'choices'
       DESCRIPTION:   'description'
       INCLUDE_OTHER: 'include_other_option'
       INCLUDE_BLANK: 'include_blank_option'
@@ -394,8 +406,9 @@ class Formbuilder
       MINLENGTH:     'minlength'
       MAXLENGTH:     'maxlength'
       LENGTH_UNITS:  'min_max_length_units'
-      FIELD_CODE:    'field_code'
+      FIELD_CODE:    'code'
       TEXT:          'text'
+      SMSTEXT:       'smsText'
       TYPE:          'type'
       HIDDEN:        'hidden'
       DEFAULT:       'default'
@@ -403,6 +416,8 @@ class Formbuilder
       CONSENSUS:     'consensus'
       HELP:          'help'
       PATTERN:       'pattern'
+      FORMAT:        'format'
+      OVERVIEW:      'overview'
 
     dict:
       ALL_CHANGES_SAVED: 'All changes saved'
