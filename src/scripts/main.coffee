@@ -408,7 +408,6 @@ class Formbuilder
       LENGTH_UNITS:  'min_max_length_units'
       FIELD_CODE:    'code'
       TEXT:          'text'
-      SMSTEXT:       'smsText'
       TYPE:          'type'
       HIDDEN:        'hidden'
       DEFAULT:       'default'

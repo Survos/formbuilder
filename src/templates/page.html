@@ -1,4 +1,11 @@
 <%= Formbuilder.templates['partials/save_button']() %>
-<%= Formbuilder.templates['partials/left_side']() %>
-<%= Formbuilder.templates['partials/right_side']() %>
-<div class='fb-clear'></div>
+<div class="row">
+	<div class="col-sm-4">
+		<div class="well well-sm" >
+			<%= Formbuilder.templates['partials/left_side']() %>
+		</div>
+	</div>
+	<div class="col-sm-8"  >
+		<%= Formbuilder.templates['partials/right_side']() %>
+	</div>
+</div>

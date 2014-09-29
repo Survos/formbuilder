@@ -605,7 +605,6 @@
         LENGTH_UNITS: 'min_max_length_units',
         FIELD_CODE: 'code',
         TEXT: 'text',
-        SMSTEXT: 'smsText',
         TYPE: 'type',
         HIDDEN: 'hidden',
         DEFAULT: 'default',
@@ -891,9 +890,7 @@ this["Formbuilder"]["templates"]["edit/label_description"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<input type=\'text\' data-rv-input=\'model.' +
-((__t = ( Formbuilder.options.mappings.LABEL )) == null ? '' : __t) +
-'\' />\n<textarea data-rv-input=\'model.' +
+__p += 'Additional notes (not visible in survey)\n<textarea data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.DESCRIPTION )) == null ? '' : __t) +
 '\'\n  placeholder=\'Add a longer description to this field\'></textarea>';
 
@@ -1020,11 +1017,9 @@ this["Formbuilder"]["templates"]["edit/text"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<hr>\n<div class="fb-common-wrapper">\n\n<div class="fb-label-description">\n    <label>Question text</label>\n\t<textarea class="form-control" data-rv-input=\'model.' +
+__p += '<hr>\n<div class="fb-common-wrapper">\n\n<div class="fb-label-description">\n    <label>Question text</label>\n\t<input autofocus class="form-control" data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.TEXT )) == null ? '' : __t) +
-'\'></textarea>\n    <label>SMS text</label>\n\t<textarea class="form-control" data-rv-input=\'model.' +
-((__t = ( Formbuilder.options.mappings.SMSTEXT )) == null ? '' : __t) +
-'\'></textarea>\n</div></div>';
+'\' >\n</div></div>';
 
 }
 return __p
@@ -1048,11 +1043,11 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( Formbuilder.templates['partials/save_button']() )) == null ? '' : __t) +
-'\n' +
+'\n<div class="row">\n\t<div class="col-sm-4">\n\t\t<div class="well well-sm" >\n\t\t\t' +
 ((__t = ( Formbuilder.templates['partials/left_side']() )) == null ? '' : __t) +
-'\n' +
+'\n\t\t</div>\n\t</div>\n\t<div class="col-sm-8"  >\n\t\t' +
 ((__t = ( Formbuilder.templates['partials/right_side']() )) == null ? '' : __t) +
-'\n<div class=\'fb-clear\'></div>';
+'\n\t</div>\n</div>\n';
 
 }
 return __p
@@ -1107,11 +1102,11 @@ this["Formbuilder"]["templates"]["partials/left_side"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-left\'>\n  <ul class=\'fb-tabs\'>\n    <li class=\'active\'><a data-target=\'#addField\'>Add new question</a></li>\n    <li><a data-target=\'#editField\'>Edit question</a></li>\n  </ul>\n\n  <div class=\'fb-tab-content\'>\n    ' +
+__p += '  <ul class=\'fb-tabs\'>\n    <li class=\'active\'><a data-target=\'#addField\'>Add new question</a></li>\n    <li><a data-target=\'#editField\'>Edit question</a></li>\n  </ul>\n\n  <div class=\'fb-tab-content\'>\n    ' +
 ((__t = ( Formbuilder.templates['partials/add_field']() )) == null ? '' : __t) +
 '\n    ' +
 ((__t = ( Formbuilder.templates['partials/edit_field']() )) == null ? '' : __t) +
-'\n  </div>\n</div>';
+'\n  </div>\n';
 
 }
 return __p
@@ -1121,7 +1116,7 @@ this["Formbuilder"]["templates"]["partials/right_side"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-right\'>\n  <div class=\'fb-no-response-fields\'>No questions</div>\n  <div class=\'fb-response-fields\'></div>\n</div>\n';
+__p += '  <div class=\'fb-no-response-fields\'>No questions</div>\n  <div class=\'fb-response-fields\'></div>\n';
 
 }
 return __p
@@ -1131,9 +1126,7 @@ this["Formbuilder"]["templates"]["partials/save_button"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-save-wrapper\'>\n  <button class=\'js-save-form ' +
-((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'\'></button>\n</div>';
+__p += '<div class=\'fb-save-wrapper\'>\n  <button class=\'btn btn-primary js-save-form\'></button>\n</div>';
 
 }
 return __p
@@ -1150,13 +1143,13 @@ __p += '\n    ' +
 ((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) )) == null ? '' : __t) +
 '\n';
  } else { ;
-__p += '\n    <div class="panel panel-default">\n      <div class="panel-heading">\n          ' +
+__p += '\n    <div class="panel panel-default">\n      <div class=\'subtemplate-wrapper\'>\n        <div class="panel-heading">\n            ' +
 ((__t = ( Formbuilder.templates['view/label']({rf: rf}) )) == null ? '' : __t) +
-'\n      </div>\n      <div class="panel-body">\n        <div class=\'subtemplate-wrapper\'>\n          <div class=\'cover\'></div>\n          ' +
+'\n        </div>\n        <div class="panel-body">\n            <div class=\'cover\'></div>\n            ' +
 ((__t = ( Formbuilder.fields[rf.get(Formbuilder.options.mappings.FIELD_TYPE)].view({rf: rf}) )) == null ? '' : __t) +
-'\n\n          ' +
+'\n\n            ' +
 ((__t = ( Formbuilder.templates['view/description']({rf: rf}) )) == null ? '' : __t) +
-'\n          ' +
+'\n            ' +
 ((__t = ( Formbuilder.templates['view/duplicate_remove']({rf: rf}) )) == null ? '' : __t) +
 '\n        </div>\n      </div>\n    </div>\n\n';
  } ;
@@ -1181,9 +1174,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<hr>\n<p class="alert alert-success"><small>' +
-((__t = ( Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.SMSTEXT)) )) == null ? '' : __t) +
-'</small></p>\n';
+__p += '<hr>\n';
  if (rf.get(Formbuilder.options.mappings.DESCRIPTION)) { ;
 __p += '\n\t<span class=\'help-block\'>\n\t  ' +
 ((__t = ( Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.DESCRIPTION)) )) == null ? '' : __t) +
