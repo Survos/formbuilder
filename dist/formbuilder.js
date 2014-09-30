@@ -1043,7 +1043,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( Formbuilder.templates['partials/save_button']() )) == null ? '' : __t) +
-'\n<div class="row">\n\t<div class="col-sm-4">\n\t\t<div class="well well-sm" >\n\t\t\t' +
+'\n<div class="row">\n\t<div class="col-sm-4">\n\t\t<div data-spy="affix" data-offset-top="200" data-offset-bottom="100" class="well well-sm" >\n\t\t\t' +
 ((__t = ( Formbuilder.templates['partials/left_side']() )) == null ? '' : __t) +
 '\n\t\t</div>\n\t</div>\n\t<div class="col-sm-8"  >\n\t\t' +
 ((__t = ( Formbuilder.templates['partials/right_side']() )) == null ? '' : __t) +

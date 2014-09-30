@@ -1,3 +1,4 @@
+.affix{top:5px;width:31.1%}
 .fb-button{display:inline-block;margin:0;padding:.563rem .844rem;border:0 none;background:#16a085;color:#fff;text-align:center;text-decoration:none;font-size:12px;line-height:1.5;cursor:pointer;border-radius:.125rem;border:thin solid #19b394;border-bottom:2px solid #16a085}
 .fb-button[disabled]{background:#ddd !important;border:thin solid #ccc;color:#777 !important;text-shadow:none !important;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";opacity:.65;cursor:default}
 .fb-clear{clear:both}
@@ -22,8 +23,8 @@
 .fb-field-wrapper input{border-radius:3px;border:thin solid #ddd}
 .fb-field-wrapper:hover .actions-wrapper,.fb-field-wrapper.editing .actions-wrapper{display:block}
 .fb-field-wrapper:hover .subtemplate-wrapper{border-color:#ddd;border-radius:3px}
-.fb-field-wrapper.editing{background-color:#ecf0f1;border-radius:3px}
-.fb-field-wrapper.editing .subtemplate-wrapper{border-color:#d9e1e3;border-style:solid;margin:0;border-radius:3px}
+.fb-field-wrapper.editing{background-color:#ecf0f2;border-radius:3px}
+.fb-field-wrapper.editing .subtemplate-wrapper{border-color:#d8e0e4;border-style:solid;margin:0;border-radius:3px}
 .fb-field-wrapper .actions-wrapper{display:none;position:absolute;bottom:-7px;right:5px;z-index:3}
 .fb-field-wrapper .actions-wrapper a{display:inline-block;background-color:#ccc;padding:2px 8px}
 .edit-response-field input,.edit-response-field textarea,.edit-response-field select{border:thin solid #ddd;border-radius:.25em;padding:.5em;display:inline-block;height:auto;vertical-align:middle}
