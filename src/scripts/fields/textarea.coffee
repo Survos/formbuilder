@@ -1,4 +1,4 @@
-Formbuilder.registerField 'text',
+Formbuilder.registerField 'textarea',
 
   order: 0
 
@@ -11,7 +11,7 @@ Formbuilder.registerField 'text',
   """
 
   addButton: """
-    <span class='symbol'><span class='fa fa-font'></span></span> Text
+    <span class='symbol'><span class='fa fa-font'></span></span> Textarea
   """
 
   defaultAttributes: (attrs) ->

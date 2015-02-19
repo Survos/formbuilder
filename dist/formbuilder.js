@@ -796,8 +796,22 @@
   Formbuilder.registerField('text', {
     order: 0,
     view: "",
-    edit: "<%= Formbuilder.templates['edit/text']() %>\n<%= Formbuilder.templates['edit/min_max_length']() %>\n<%= Formbuilder.templates['edit/question']() %>",
+    edit: "<%= Formbuilder.templates['edit/text']() %>\n<%= Formbuilder.templates['edit/question']() %>",
     addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Text",
+    defaultAttributes: function(attrs) {
+      attrs.field_options.size = 'small';
+      return attrs;
+    }
+  });
+
+}).call(this);
+
+(function() {
+  Formbuilder.registerField('textarea', {
+    order: 0,
+    view: "",
+    edit: "<%= Formbuilder.templates['edit/text']() %>\n<%= Formbuilder.templates['edit/question']() %>",
+    addButton: "<span class='symbol'><span class='fa fa-font'></span></span> Textarea",
     defaultAttributes: function(attrs) {
       attrs.field_options.size = 'small';
       return attrs;
@@ -878,9 +892,9 @@ this["Formbuilder"]["templates"]["edit/integer_only"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class=\'fb-edit-section-header\'>Integer only</div>\n<label>\n  <input type=\'checkbox\' data-rv-checked=\'model.' +
+__p += '<div class=\'fb-edit-section-header\'>Integer only</div>\n<div class="checkbox">\n    <label>\n        <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.INTEGER_ONLY )) == null ? '' : __t) +
-'\' />\n  Only accept integers\n</label>\n';
+'\'/>\n        Only accept integers\n    </label>\n</div>\n';
 
 }
 return __p
@@ -935,23 +949,23 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 __p += '<div class=\'fb-edit-section-header\'>Options</div>\n\n';
  if (typeof includeBlank !== 'undefined'){ ;
-__p += '\n  <label>\n    <input type=\'checkbox\' data-rv-checked=\'model.' +
+__p += '\n<label>\n    <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.INCLUDE_BLANK )) == null ? '' : __t) +
-'\' />\n    Include blank\n  </label>\n';
+'\'/>\n    Include blank\n</label>\n';
  } ;
-__p += '\n\n<div class=\'option\' data-rv-each-option=\'model.' +
+__p += '\n\n<div class=\'option checkbox\' data-rv-each-option=\'model.' +
 ((__t = ( Formbuilder.options.mappings.OPTIONS )) == null ? '' : __t) +
-'\'>\n  <input type="checkbox" class=\'js-default-updated\' data-rv-checked="option:checked" />\n  <input type="text" data-rv-input="option:text" class=\'option-label-input\' />\n  <a class="js-add-option ' +
+'\'>\n    <input type="checkbox" class=\'js-default-updated\' data-rv-checked="option:checked"/>\n    <input type="text" data-rv-input="option:text" class=\'option-label-input\'/>\n    <a class="js-add-option ' +
 ((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'" title="Add Option"><i class=\'fa fa-plus-circle\'></i></a>\n  <a class="js-remove-option ' +
+'" title="Add Option"><i\n            class=\'fa fa-plus-circle\'></i></a>\n    <a class="js-remove-option ' +
 ((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
-'" title="Remove Option"><i class=\'fa fa-minus-circle\'></i></a>\n</div>\n\n';
+'" title="Remove Option"><i\n            class=\'fa fa-minus-circle\'></i></a>\n</div>\n\n';
  if (typeof includeOther !== 'undefined'){ ;
-__p += '\n  <label>\n    <input type=\'checkbox\' data-rv-checked=\'model.' +
+__p += '\n<div class="checkbox">\n    <label>\n        <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.INCLUDE_OTHER )) == null ? '' : __t) +
-'\' />\n    Include "other"\n  </label>\n';
+'\'/>\n        Include "other"\n    </label>\n</div>\n';
  } ;
-__p += '\n\n<div class=\'fb-bottom-add\'>\n  <a class="js-add-option ' +
+__p += '\n\n<div class=\'fb-bottom-add\'>\n    <a class="js-add-option ' +
 ((__t = ( Formbuilder.options.BUTTON_CLASS )) == null ? '' : __t) +
 '">Add option</a>\n</div>\n';
 
@@ -963,23 +977,23 @@ this["Formbuilder"]["templates"]["edit/question"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\n<div class="fb-common-wrapper">\n    <div class=\'fb-edit-section-header\'>Common question properties</div>\n    <div class="fb-label-description">\n        Variable\n        <input type="text" data-rv-input="model.' +
+__p += '<div class="fb-common-wrapper">\n    <div class=\'fb-edit-section-header\'>Common question properties</div>\n    <div class="fb-label-description">\n        Variable\n        <input type="text" data-rv-input="model.' +
 ((__t = ( Formbuilder.options.mappings.FIELD_CODE )) == null ? '' : __t) +
-'"  >\n    </div>\n\n    <div class=\'fb-edit-section-header\'>General properties</div>\n\n\n    <div class=\'fb-common-checkboxes\'>\n        <label>\n            <input type=\'checkbox\' data-rv-checked=\'model.' +
+'">\n    </div>\n\n    <div class=\'fb-edit-section-header\'>General properties</div>\n\n\n    <div class="row">\n        <div class="col-md-4">\n            <div class=\'checkbox fb-common-checkboxes\'>\n                <label>\n                    <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.REQUIRED )) == null ? '' : __t) +
-'\' />\n            Required\n        </label>\n    </div>\n\n      <div class=\'fb-common-checkboxes\'>\n        <label>\n            <input type=\'checkbox\' data-rv-checked=\'model.' +
+'\'/>\n                    Required\n                </label>\n            </div>\n        </div>\n        <div class="col-md-4">\n            <div class=\'checkbox fb-common-checkboxes\'>\n                <label>\n                    <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.HIDDEN )) == null ? '' : __t) +
-'\' >\n            Hidden\n        </label>\n    </div>\n    <div class="clearfix"></div>\n      <div class=\'fb-common-checkboxes\'>\n        <label>\n            <input type=\'checkbox\' data-rv-checked=\'model.' +
+'\'>\n                    Hidden\n                </label>\n            </div>\n        </div>\n        <div class="col-md-4">\n            <div class=\'checkbox fb-common-checkboxes\'>\n                <label>\n                    <input type=\'checkbox\' data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.CONSENSUS )) == null ? '' : __t) +
-'\' >\n            Consensus\n        </label>\n    </div>\n    <div class="clearfix"></div>\n    <div class="fb-label-description">\n\n        <input type=\'text\' data-rv-checked=\'model.' +
+'\'>\n                    Consensus\n                </label>\n            </div>\n        </div>\n    </div>\n\n\n    <div class="clearfix"></div>\n    <form class="form-horizontal">\n\n        <div class="fb-label-description form-group">\n            <label class="col-sm-2 control-label">Default</label>\n\n            <div class="col-sm-10">\n                <input class="form-control input-xs" type=\'text\'\n                       data-rv-checked=\'model.' +
 ((__t = ( Formbuilder.options.mappings.DEFAULT )) == null ? '' : __t) +
-'\' >\n        Default\n    </div>\n    <div class="clearfix"></div>\n        <div class="fb-label-description">\n\n            <input type="text" data-rv-input="model.' +
+'\'>\n            </div>\n        </div>\n\n        <div class="fb-label-description form-group">\n            <label class="col-sm-2 control-label">Condition</label>\n\n            <div class="col-sm-10">\n                <input class="form-control input-xs" type="text"\n                       data-rv-input="model.' +
 ((__t = ( Formbuilder.options.mappings.CONDITION )) == null ? '' : __t) +
-'"  >\n            Condition\n        </div>\n        <div class="clearfix"></div>\n        <input type="text" data-rv-input="model.' +
+'">\n            </div>\n        </div>\n\n        <div class="fb-label-description form-group">\n            <label class="col-sm-2 control-label">Help</label>\n\n            <div class="col-sm-10">\n                <input class="form-control input-xs" type="text"\n                       data-rv-input="model.' +
 ((__t = ( Formbuilder.options.mappings.HELP )) == null ? '' : __t) +
-'"  >\n        Help\n\n    <div class=\'fb-edit-section-header\'>Text properties</div>\n    <div class="fb-label-description">\n        Pattern\n        <input type="text" data-rv-input="model.' +
+'">\n            </div>\n        </div>\n        <div class=\'fb-edit-section-header\'>Text properties</div>\n\n        <div class="fb-label-description form-group">\n            <label class="col-sm-2 control-label">Pattern</label>\n\n            <div class="col-sm-10">\n                <input class="form-control input-xs" type="text"\n                       data-rv-input="model.' +
 ((__t = ( Formbuilder.options.mappings.PATTERN )) == null ? '' : __t) +
-'"  >\n    </div>\n</div>\n\n\n\n\n\n\n\n\n\n';
+'">\n            </div>\n        </div>\n    </form>\n</div>\n\n\n\n\n\n\n\n\n\n';
 
 }
 return __p
@@ -1001,13 +1015,13 @@ this["Formbuilder"]["templates"]["edit/survey"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += 'Title: <input type=\'text\' data-rv-input=\'model.' +
+__p += '<div class="form-horizontal">\n\n    <div class="form-group">\n\n        <label class="col-sm-2 control-label">Title: </label>\n\n        <div class="col-sm-10">\n            <input type=\'text\' data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.TITLE )) == null ? '' : __t) +
-'\' />\n<br>\nFormat:\n<select data-rv-value="model.' +
+'\'/>\n        </div>\n    </div>\n\n    <div class="form-group">\n\n        <label class="col-sm-2 control-label">Format:</label>\n\n        <div class="col-sm-10">\n            <select data-rv-value="model.' +
 ((__t = ( Formbuilder.options.mappings.FORMAT )) == null ? '' : __t) +
-'" class="form-control">\n    <option>html</option>\n    <option>text</option>\n    <option>markdown</option>\n</select>\n<br>\nInstructions: <textarea data-rv-input=\'model.' +
+'" class="form-control">\n                <option>html</option>\n                <option>text</option>\n                <option>markdown</option>\n            </select>\n        </div>\n    </div>\n    <div class="form-group">\n\n        <label class="col-sm-2 control-label">Instructions:</label>\n\n        <div class="col-sm-10">\n\n            <textarea data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.OVERVIEW )) == null ? '' : __t) +
-'\' ></textarea>\n\n';
+'\'></textarea>\n        </div>\n    </div>\n\n\n</div>\n\n\n';
 
 }
 return __p
@@ -1017,9 +1031,9 @@ this["Formbuilder"]["templates"]["edit/text"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<hr>\n<div class="fb-common-wrapper">\n\n<div class="fb-label-description">\n    <label>Question text</label>\n\t<input autofocus class="form-control" data-rv-input=\'model.' +
+__p += '<hr>\n<div class="fb-common-wrapper">\n\n    <div class="fb-label-description form-group">\n        <label>Question text</label>\n        <input autofocus class="form-control input-xs" data-rv-input=\'model.' +
 ((__t = ( Formbuilder.options.mappings.TEXT )) == null ? '' : __t) +
-'\' >\n</div></div>';
+'\'>\n    </div>\n</div>';
 
 }
 return __p
@@ -1043,7 +1057,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p +=
 ((__t = ( Formbuilder.templates['partials/save_button']() )) == null ? '' : __t) +
-'\n<div class="row">\n\t<div class="col-sm-4">\n\t\t<div data-spy="affix" data-offset-top="200" data-offset-bottom="100" class="well well-sm" >\n\t\t\t' +
+'\n<div class="row">\n\t<div class="col-sm-4">\n\t\t<div data-spy="affix" data-offset-top="160" data-offset-bottom="100" class="well well-sm" >\n\t\t\t' +
 ((__t = ( Formbuilder.templates['partials/left_side']() )) == null ? '' : __t) +
 '\n\t\t</div>\n\t</div>\n\t<div class="col-sm-8"  >\n\t\t' +
 ((__t = ( Formbuilder.templates['partials/right_side']() )) == null ? '' : __t) +
@@ -1174,7 +1188,7 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<hr>\n';
+
  if (rf.get(Formbuilder.options.mappings.DESCRIPTION)) { ;
 __p += '\n\t<span class=\'help-block\'>\n\t  ' +
 ((__t = ( Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.DESCRIPTION)) )) == null ? '' : __t) +
@@ -1231,13 +1245,13 @@ this["Formbuilder"]["templates"]["view/survey"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="panel panel-default">\n  <div class="panel-heading">\n  <h3>' +
+__p += '<div class="panel panel-default">\n    <div class="panel-heading">\n        <strong>' +
 ((__t = ( rf.get(Formbuilder.options.mappings.TITLE) )) == null ? '' : __t) +
 ' <span class="label label-warning">' +
 ((__t = ( rf.get(Formbuilder.options.mappings.FORMAT) )) == null ? '' : __t) +
-'</span></h3>\n  </div>\n  <div class="panel-body">\n    <div class=\'subtemplate-wrapper\'>\n      <div class=\'cover\'></div>\n        <h5>Instructions</h5>\n        <span class=\'help-block\'>\n            ' +
+'</span></strong>\n    </div>\n    <div class="panel-body">\n        <div class=\'subtemplate-wrapper\'>\n            <div class=\'cover\'></div>\n            <h5>Instructions</h5>\n            <span class=\'help-block\'>\n                ' +
 ((__t = ( Formbuilder.helpers.simple_format(rf.get(Formbuilder.options.mappings.OVERVIEW)) )) == null ? '' : __t) +
-'\n        </span>\n    </div>\n  </div>\n</div>\n';
+'\n            </span>\n        </div>\n    </div>\n</div>\n';
 
 }
 return __p

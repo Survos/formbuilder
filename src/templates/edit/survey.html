@@ -1,11 +1,37 @@
-Title: <input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.TITLE %>' />
-<br>
-Format:
-<select data-rv-value="model.<%= Formbuilder.options.mappings.FORMAT %>" class="form-control">
-    <option>html</option>
-    <option>text</option>
-    <option>markdown</option>
-</select>
-<br>
-Instructions: <textarea data-rv-input='model.<%= Formbuilder.options.mappings.OVERVIEW %>' ></textarea>
+<div class="form-horizontal">
+
+    <div class="form-group">
+
+        <label class="col-sm-2 control-label">Title: </label>
+
+        <div class="col-sm-10">
+            <input type='text' data-rv-input='model.<%= Formbuilder.options.mappings.TITLE %>'/>
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label class="col-sm-2 control-label">Format:</label>
+
+        <div class="col-sm-10">
+            <select data-rv-value="model.<%= Formbuilder.options.mappings.FORMAT %>" class="form-control">
+                <option>html</option>
+                <option>text</option>
+                <option>markdown</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+
+        <label class="col-sm-2 control-label">Instructions:</label>
+
+        <div class="col-sm-10">
+
+            <textarea data-rv-input='model.<%= Formbuilder.options.mappings.OVERVIEW %>'></textarea>
+        </div>
+    </div>
+
+
+</div>
+
 
